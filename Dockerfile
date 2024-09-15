@@ -2,7 +2,7 @@ FROM gradle:8.10.1-jdk17-alpine AS build
 
 WORKDIR /home/gradle/src
 
-COPY --chown=gradle:gradle backend/RestAPI /home/gradle/src
+COPY --chown=gradle:gradle . /home/gradle/src
 
 RUN gradle clean build --no-daemon --stacktrace --info
 
