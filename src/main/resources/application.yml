@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: RestAPI
+  datasource:
+    url: jdbc:postgresql://rc1b-5xmqy6bq501kls4m.mdb.yandexcloud.net:6432/cnrprod1725730445-team-76999?stringtype=unspecified
+    username: cnrprod1725730445-team-76999
+    password: cnrprod1725730445-team-76999
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hbm2ddl:
+        auto: none
+      show_sql: true
+  flyway:
+    clean-disabled: false
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.web: TRACE
+    org.apache.catalina: TRACE

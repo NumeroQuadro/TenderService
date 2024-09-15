@@ -1,0 +1,4 @@
+rootProject.name = 'RestAPI'
+include 'Application'
+include 'Presentation'
+
