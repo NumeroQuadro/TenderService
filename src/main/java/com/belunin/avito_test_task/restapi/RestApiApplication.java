@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 @EnableJpaRepositories(basePackages = {"com.belunin.avito_test_task.Repositories"})
-@ComponentScan(basePackages = {"com.belunin.avito_test_task.Services", "com.belunin.avito_test_task.Controllers"})
+@ComponentScan(basePackages = {"com.belunin.avito_test_task.restapi", "com.belunin.avito_test_task.Services", "com.belunin.avito_test_task.Controllers"})
 @EntityScan(basePackages = {"com.belunin.avito_test_task.Models"})
 public class RestApiApplication {
 	public static void main(String[] args) {

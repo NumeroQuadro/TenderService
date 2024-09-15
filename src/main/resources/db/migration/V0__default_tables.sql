@@ -31,7 +31,7 @@ CREATE TABLE organization
     id          UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name        VARCHAR(100) NOT NULL,
     description TEXT,
-    type        organization_type,
+    type        organization_type DEFAULT 'LLC',
     created_at  TIMESTAMP        DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP        DEFAULT CURRENT_TIMESTAMP
 );
@@ -48,7 +48,7 @@ CREATE TABLE tender
     id              UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name            VARCHAR(100) NOT NULL,
     description     TEXT         NOT NULL,
-    status          tender_status,
+    status          tender_status DEFAULT 'CREATED',
     organization_id UUID REFERENCES organization (id) ON DELETE CASCADE,
     creator_id      UUID REFERENCES employee (id) ON DELETE CASCADE,
     version         INT              DEFAULT 1,
@@ -64,7 +64,7 @@ CREATE TABLE bid
     creator_id      UUID REFERENCES employee (id) ON DELETE CASCADE,
     name            VARCHAR(100) NOT NULL,
     description     TEXT         NOT NULL,
-    status          bid_status,
+    status          bid_status DEFAULT 'CREATED',
     version         INT              DEFAULT 1,
     created_at      TIMESTAMP        DEFAULT CURRENT_TIMESTAMP,
     updated_at      TIMESTAMP        DEFAULT CURRENT_TIMESTAMP

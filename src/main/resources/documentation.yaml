@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: Avito Test Task API
+  description: API documentation for Avito Test Task project
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /bids:
+    get:
+      summary: Retrieve all bids
+      operationId: getAllBids
+      tags:
+        - Bid
+      responses:
+        '200':
+          description: List of all bids
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BidDTO'
+
+  /bids/new:
+    post:
+      summary: Create a new bid
+      operationId: createBid
+      tags:
+        - Bid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BidDTO'
+      responses:
+        '201':
+          description: Bid created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BidDTO'
+        '400':
+          description: Bad request
+
+  /bids/{bidId}/submit_decision:
+    post:
+      summary: Submit decision on a bid
+      operationId: submitBidDecision
+      tags:
+        - Bid
+      parameters:
+        - name: bidId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: isApproved
+          in: query
+          required: true
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Decision submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BidApprovalResponse'
+        '404':
+          description: Bid not found
+
+  /bids/list:
+    get:
+      summary: List all bids
+      operationId: listAllBids
+      tags:
+        - Bid
+      responses:
+        '200':
+          description: Successfully retrieved list of all bids
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BidDTO'
+
+components:
+  schemas:
+    BidDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        version:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        tenderId:
+          type: string
+        organizationId:
+          type: string
+        creatorId:
+          type: string
+    BidApprovalResponse:
+      type: object
+      properties:
+        approvalStatus:
+          type: string
+        message:
+          type: string

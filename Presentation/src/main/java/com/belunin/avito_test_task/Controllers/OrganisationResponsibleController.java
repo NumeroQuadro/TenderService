@@ -52,11 +52,12 @@ public class OrganisationResponsibleController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<OrganisationResponsible> updateOrganisationResponsible(
+            @PathVariable UUID id,
             @RequestBody OrganisationResponsibleDTO organisationResponsibleDTO
     ) {
         return organisationResponsibleService
                 .updateOrganisationResponsible(
-                        organisationResponsibleDTO.getId(), organisationResponsibleDTO.getOrganizationId(), organisationResponsibleDTO.getUserId())
+                        id, organisationResponsibleDTO.getOrganizationId(), organisationResponsibleDTO.getUserId())
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -70,7 +71,6 @@ public class OrganisationResponsibleController {
 
     private OrganisationResponsibleDTO convertToDTO(OrganisationResponsible entity) {
         OrganisationResponsibleDTO dto = new OrganisationResponsibleDTO();
-        dto.setId(entity.getId());
         dto.setOrganizationId(entity.getOrganization().getId());
         dto.setUserId(entity.getUser().getId());
 
@@ -79,6 +79,7 @@ public class OrganisationResponsibleController {
 
     private OrganisationResponsible convertToEntity(OrganisationResponsibleDTO dto) {
         OrganisationResponsible entity = new OrganisationResponsible();
+        entity.setId(dto.getOrganizationId());
         entity.setOrganization(organizationService.findOrganizationById(dto.getOrganizationId()));
         entity.setUser(employeeService.getUserById(dto.getUserId()));
 
