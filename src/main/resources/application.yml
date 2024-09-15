@@ -2,9 +2,9 @@ spring:
   application:
     name: RestAPI
   datasource:
-    url: jdbc:postgresql://rc1b-5xmqy6bq501kls4m.mdb.yandexcloud.net:6432/cnrprod1725730445-team-76999?stringtype=unspecified
-    username: cnrprod1725730445-team-76999
-    password: cnrprod1725730445-team-76999
+    url: jdbc:postgresql://193.57.136.79:5432/avito?stringtype=unspecified
+    username: belunin
+    password: passwd
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
