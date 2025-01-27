@@ -11,7 +11,7 @@ This application is a test job designed as a REST API that enables businesses to
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/NumeroQuadro/AvitoTestTask.git
+git clone https://github.com/NumeroQuadro/TenderService.git
 ```
 
 2. Navigate into the cloned repository:
